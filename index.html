@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d231c" />
+  <meta name="description" content="АгроКод — короткая браузерная стратегия об управлении цифровой фермой." />
+  <title>АгроКод: спаси цифровую ферму</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar" aria-label="Шапка игры">
+      <a class="brand" href="#" aria-label="АгроКод — на главный экран">
+        <span class="brand-mark">A</span>
+        <span>АГРОКОД</span>
+      </a>
+      <div class="topbar-meta">
+        <span class="season">СЕЗОН 2026</span>
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-label="Выключить звук" aria-pressed="true">♪</button>
+      </div>
+    </header>
+
+    <section class="screen screen--active" id="start-screen" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Симулятор решений</p>
+        <h1 id="hero-title">Спаси<br /><em>цифровую</em><br />ферму</h1>
+        <p class="hero-lead">Восемь кризисов. Ограниченные ресурсы. Каждое решение меняет будущее хозяйства.</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="start-button" type="button">
+            Начать смену <span>→</span>
+          </button>
+          <button class="text-button" id="how-button" type="button">Как играть</button>
+        </div>
+        <div class="hero-facts" aria-label="Характеристики игры">
+          <div><strong>03:00</strong><span>минуты</span></div>
+          <div><strong>08</strong><span>решений</span></div>
+          <div><strong>∞</strong><span>сценариев</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit--outer"></div>
+        <div class="orbit orbit--inner"></div>
+        <div class="scan-line"></div>
+        <div class="farm-core">
+          <div class="core-grid"></div>
+          <div class="barn">⌂</div>
+          <div class="field field--one"></div>
+          <div class="field field--two"></div>
+          <div class="field field--three"></div>
+          <div class="sensor sensor--one"><i></i></div>
+          <div class="sensor sensor--two"><i></i></div>
+          <div class="sensor sensor--three"><i></i></div>
+        </div>
+        <div class="data-chip data-chip--one"><span>УРОЖАЙ</span><strong>+12%</strong></div>
+        <div class="data-chip data-chip--two"><span>ДАТЧИКИ</span><strong>ONLINE</strong></div>
+        <div class="data-chip data-chip--three"><span>РИСК</span><strong>LOW</strong></div>
+      </div>
+    </section>
+
+    <section class="screen" id="game-screen" aria-labelledby="event-title">
+      <div class="game-layout">
+        <aside class="dashboard" aria-label="Показатели фермы">
+          <div class="dashboard-heading">
+            <span class="live-dot"></span>
+            <div><small>ФЕРМА #3349</small><strong>Система активна</strong></div>
+          </div>
+          <div class="metrics" id="metrics"></div>
+          <div class="farm-status">
+            <div class="mini-map" aria-hidden="true">
+              <span class="plot plot--a"></span><span class="plot plot--b"></span>
+              <span class="plot plot--c"></span><span class="plot plot--d"></span>
+              <i class="pulse"></i>
+            </div>
+            <p id="status-copy">Системы фермы работают штатно.</p>
+          </div>
+          <button class="restart-button" id="restart-button" type="button">↻ Начать заново</button>
+        </aside>
+
+        <article class="event-panel">
+          <div class="progress-row">
+            <span id="event-counter">СОБЫТИЕ 01 / 08</span>
+            <div class="progress-track"><i id="progress-bar"></i></div>
+          </div>
+          <div class="event-icon" id="event-icon" aria-hidden="true">☁</div>
+          <p class="event-category" id="event-category">КЛИМАТИЧЕСКИЙ РИСК</p>
+          <h2 id="event-title">Загрузка сценария…</h2>
+          <p class="event-description" id="event-description"></p>
+          <div class="choices" id="choices" role="group" aria-label="Варианты решения"></div>
+          <p class="choice-hint">Выбор нельзя отменить. Думайте как руководитель продукта.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="screen" id="result-screen" aria-labelledby="result-title">
+      <div class="result-card">
+        <p class="eyebrow"><span></span> Смена завершена</p>
+        <div class="result-badge" id="result-badge">A+</div>
+        <p class="result-label">ВАШ АГРОТЕХ-ПРОФИЛЬ</p>
+        <h2 id="result-title">Архитектор устойчивой фермы</h2>
+        <p class="result-description" id="result-description"></p>
+        <div class="result-stats" id="result-stats"></div>
+        <p class="record" id="record-copy"></p>
+        <div class="result-actions">
+          <button class="primary-button" id="again-button" type="button">Сыграть ещё раз <span>↻</span></button>
+          <button class="secondary-button" id="share-button" type="button">Поделиться результатом</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="rules-dialog" id="rules-dialog">
+    <button class="dialog-close" id="dialog-close" type="button" aria-label="Закрыть">×</button>
+    <p class="eyebrow"><span></span> Инструкция</p>
+    <h2>Одна смена.<br />Восемь решений.</h2>
+    <ol>
+      <li><strong>Изучите событие.</strong><span>Система покажет новую угрозу или возможность.</span></li>
+      <li><strong>Выберите стратегию.</strong><span>Каждый вариант влияет на ресурсы фермы.</span></li>
+      <li><strong>Сохраните баланс.</strong><span>Не дайте ни одному показателю упасть до нуля.</span></li>
+    </ol>
+    <button class="primary-button" id="dialog-start" type="button">Я готов <span>→</span></button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Результат скопирован</div>
+  <script src="./game.js"></script>
+</body>
+</html>
